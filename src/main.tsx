@@ -32,7 +32,7 @@ const { chains, publicClient } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: 'Patient Sponsorship Platform',
-  projectId: 'YOUR_PROJECT_ID', // Get from WalletConnect Cloud
+  projectId: process.env.VITE_WALLETCONNECT_PROJECT_ID || 'demo-project-id',
   chains
 });
 

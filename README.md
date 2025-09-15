@@ -85,26 +85,32 @@ Navigate to `http://localhost:5173` in your browser.
 
 ### Local Development
 ```bash
+# Start local Hardhat node
+npm run node
+
+# In another terminal, compile contracts
+npm run compile
+
 # Deploy to local hardhat network
-npx hardhat deploy --network localhost
+npm run deploy:local
 
 # Deploy to testnet (Goerli)
-npx hardhat deploy --network goerli
+npm run deploy:goerli
 
 # Verify on Etherscan
-npx hardhat verify --network goerli DEPLOYED_CONTRACT_ADDRESS
+npm run verify --network goerli DEPLOYED_CONTRACT_ADDRESS
 ```
 
 ### Mainnet Deployment
 ```bash
 # Deploy to Ethereum mainnet
-npx hardhat deploy --network mainnet
+npm run deploy:mainnet
 
 # Deploy to Base
-npx hardhat deploy --network base
+npm run deploy:base
 ```
 
-Update `src/utils/constants.ts` with your deployed contract address.
+Update your `.env` file with the deployed contract address.
 
 ## 🔧 Configuration
 

@@ -1,6 +1,6 @@
 // Contract Configuration
 // TODO: Update with actual deployed contract address
-export const CONTRACT_ADDRESS = '0x742d35Cc6634C0532925a3b8D428Ec9AF98de5b1' as const;
+export const CONTRACT_ADDRESS = (process.env.VITE_CONTRACT_ADDRESS || '0x742d35Cc6634C0532925a3b8D428Ec9AF98de5b1') as const;
 
 // Contract ABI - Simplified for demo, include full ABI from compilation
 export const CONTRACT_ABI = [
