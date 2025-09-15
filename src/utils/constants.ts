@@ -1,6 +1,6 @@
 // Contract Configuration
 // TODO: Update with actual deployed contract address
-export const CONTRACT_ADDRESS = (process.env.VITE_CONTRACT_ADDRESS || '0x742d35Cc6634C0532925a3b8D428Ec9AF98de5b1') as const;
+export const CONTRACT_ADDRESS = (import.meta.env.VITE_CONTRACT_ADDRESS || '0x742d35Cc6634C0532925a3b8D428Ec9AF98de5b1') as `0x${string}`;
 
 // Contract ABI - Simplified for demo, include full ABI from compilation
 export const CONTRACT_ABI = [
@@ -110,9 +110,9 @@ export const USDC_ADDRESS = '0xA0b86a33E6441e8e5B09E74E5cD5bc8D98e12777' as cons
 export const LIVES_TOKEN_ADDRESS = '0x742d35Cc6634C0532925a3b8D428Ec9AF98de5b1' as const; // $LIVES token
 
 // IPFS Configuration
-export const PINATA_API_KEY = process.env.VITE_PINATA_API_KEY || '';
-export const PINATA_SECRET_API_KEY = process.env.VITE_PINATA_SECRET_API_KEY || '';
-export const PINATA_JWT = process.env.VITE_PINATA_JWT || '';
+export const PINATA_API_KEY = import.meta.env.VITE_PINATA_API_KEY || '';
+export const PINATA_SECRET_API_KEY = import.meta.env.VITE_PINATA_SECRET_API_KEY || '';
+export const PINATA_JWT = import.meta.env.VITE_PINATA_JWT || '';
 
 // Network Configuration
 export const SUPPORTED_CHAINS = [1, 5, 137, 80001, 8453] as const; // Mainnet, Goerli, Polygon, Mumbai, Base

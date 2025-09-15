@@ -1,5 +1,5 @@
-import { useContract as useWagmiContract, useAccount, usePublicClient, useWalletClient } from 'wagmi';
-import { parseEther, formatEther } from 'viem';
+import { useAccount, usePublicClient, useWalletClient } from 'wagmi';
+import { parseUnits, formatUnits } from 'viem';
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../utils/constants';
 
 export const useContract = () => {
@@ -7,18 +7,11 @@ export const useContract = () => {
   const publicClient = usePublicClient();
   const { data: walletClient } = useWalletClient();
 
-  const contract = useWagmiContract({
-    address: CONTRACT_ADDRESS,
-    abi: CONTRACT_ABI,
-    publicClient,
-    walletClient,
-  });
-
   const createCampaign = async (fundingGoal: string, ipfsHash: string) => {
     if (!walletClient || !address) throw new Error('Wallet not connected');
     
     try {
-      const { request } = await publicClient.simulateContract({
+      const { request } = await publicClient!.simulateContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'createCampaign',
@@ -27,7 +20,7 @@ export const useContract = () => {
       });
 
       const hash = await walletClient.writeContract(request);
-      await publicClient.waitForTransactionReceipt({ hash });
+      await publicClient!.waitForTransactionReceipt({ hash });
       
       return hash;
     } catch (error) {
@@ -40,7 +33,7 @@ export const useContract = () => {
     if (!walletClient || !address) throw new Error('Wallet not connected');
     
     try {
-      const { request } = await publicClient.simulateContract({
+      const { request } = await publicClient!.simulateContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'contributeUSDC',
@@ -49,7 +42,7 @@ export const useContract = () => {
       });
 
       const hash = await walletClient.writeContract(request);
-      await publicClient.waitForTransactionReceipt({ hash });
+      await publicClient!.waitForTransactionReceipt({ hash });
       
       return hash;
     } catch (error) {
@@ -62,7 +55,7 @@ export const useContract = () => {
     if (!walletClient || !address) throw new Error('Wallet not connected');
     
     try {
-      const { request } = await publicClient.simulateContract({
+      const { request } = await publicClient!.simulateContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'contributeLIVES',
@@ -71,7 +64,7 @@ export const useContract = () => {
       });
 
       const hash = await walletClient.writeContract(request);
-      await publicClient.waitForTransactionReceipt({ hash });
+      await publicClient!.waitForTransactionReceipt({ hash });
       
       return hash;
     } catch (error) {
@@ -82,7 +75,7 @@ export const useContract = () => {
 
   const getActiveCampaigns = async () => {
     try {
-      const result = await publicClient.readContract({
+      const result = await publicClient!.readContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'getActiveCampaigns',
@@ -97,7 +90,7 @@ export const useContract = () => {
 
   const getCampaignData = async (campaignId: string) => {
     try {
-      const result = await publicClient.readContract({
+      const result = await publicClient!.readContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'campaigns',
@@ -107,7 +100,7 @@ export const useContract = () => {
       const [id, patient, fundingGoal, currentFunding, ipfsHash, isActive, goalReached, createdAt] = result as any[];
       
       // Get sponsors
-      const sponsors = await publicClient.readContract({
+      const sponsors = await publicClient!.readContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'getCampaignSponsors',
@@ -133,7 +126,7 @@ export const useContract = () => {
 
   const getPatientCampaigns = async (patientAddress: string) => {
     try {
-      const result = await publicClient.readContract({
+      const result = await publicClient!.readContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'getPatientCampaigns',
@@ -149,7 +142,7 @@ export const useContract = () => {
 
   const getSponsorImpactNFTs = async (sponsorAddress: string) => {
     try {
-      const result = await publicClient.readContract({
+      const result = await publicClient!.readContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'getSponsorImpactNFTs',
@@ -165,7 +158,7 @@ export const useContract = () => {
 
   const getSponsorContribution = async (campaignId: string, sponsorAddress: string) => {
     try {
-      const result = await publicClient.readContract({
+      const result = await publicClient!.readContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'getSponsorContribution',
@@ -183,7 +176,7 @@ export const useContract = () => {
     if (!walletClient || !address) throw new Error('Wallet not connected');
     
     try {
-      const { request } = await publicClient.simulateContract({
+      const { request } = await publicClient!.simulateContract({
         address: CONTRACT_ADDRESS,
         abi: CONTRACT_ABI,
         functionName: 'withdrawFunds',
@@ -192,7 +185,7 @@ export const useContract = () => {
       });
 
       const hash = await walletClient.writeContract(request);
-      await publicClient.waitForTransactionReceipt({ hash });
+      await publicClient!.waitForTransactionReceipt({ hash });
       
       return hash;
     } catch (error) {

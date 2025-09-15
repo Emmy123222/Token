@@ -25,14 +25,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const { chains, publicClient } = configureChains(
   [mainnet, polygon, optimism, arbitrum, base, sepolia],
   [
-    alchemyProvider({ apiKey: process.env.VITE_ALCHEMY_ID || 'demo' }),
+    alchemyProvider({ apiKey: import.meta.env.VITE_ALCHEMY_ID || 'demo' }),
     publicProvider()
   ]
 );
 
 const { connectors } = getDefaultWallets({
   appName: 'Patient Sponsorship Platform',
-  projectId: process.env.VITE_WALLETCONNECT_PROJECT_ID || 'demo-project-id',
+  projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID || 'demo-project-id',
   chains
 });
 
