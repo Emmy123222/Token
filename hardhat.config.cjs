@@ -3,6 +3,7 @@ require("dotenv").config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
+  defaultNetwork: "hardhat",
   solidity: {
     version: "0.8.19",
     settings: {
@@ -21,17 +22,17 @@ module.exports = {
       chainId: 31337,
     },
     goerli: {
-      url: `https://eth-goerli.alchemyapi.io/v2/${process.env.VITE_ALCHEMY_ID}`,
+      url: `https://eth-goerli.alchemyapi.io/v2/${process.env.ALCHEMY_ID}`,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 5,
     },
     sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.VITE_ALCHEMY_ID}`,
+      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_ID}`,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 11155111,
     },
     mainnet: {
-      url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.VITE_ALCHEMY_ID}`,
+      url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_ID}`,
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 1,
     },
